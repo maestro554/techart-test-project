@@ -10,7 +10,7 @@ class News {
     }
 
     public function getLatest($limit = 4, $offset = 0) {
-        $stmt = $this->pdo->prepare("SELECT * FROM news ORDER BY date ASC LIMIT :limit OFFSET :offset");
+        $stmt = $this->pdo->prepare("SELECT * FROM news ORDER BY date DESC LIMIT :limit OFFSET :offset");
         $stmt->bindValue(":limit", (int)$limit, PDO::PARAM_INT);
         $stmt->bindValue(":offset", (int)$offset, PDO::PARAM_INT);
         $stmt->execute();
@@ -30,4 +30,5 @@ class News {
         
         return (int)$stmt->fetch(PDO::FETCH_ASSOC)["total"];
     }
+
 }
